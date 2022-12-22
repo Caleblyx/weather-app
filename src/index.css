@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.location-datetime {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.day,
+.location{
+  font-size: 80px;
+}
+
+.datetime{
+  font-size: 40px;
+}
+
+.temperature {
+  display: flex;
+  font-size: 72px;
+  align-items: center;
+}
+
+.temp-unit-divider{
+  margin: 0px 5px;
+}
+
+.temp-unit-selected{
+  font-weight: 500;
+}
+
+.temp-unit-unselected{
+  font-weight: 500;
+  opacity: 50%;
+}
+
+.current-weather-stats > img {
+  height: 46px;
+}
+
+.current-weather {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.current-weather-stat,
+.current-weather-stats {
+  display: flex;
+  font-size: 32px;
+  align-items: flex-end;
+}
+
+.current-wind-stats{
+  font-size: 32px;
+}
+
+.current-weather-conditions,
+.current-weather-desc{
+  font-size: 62px;
+}
+.day,
+.current-weather-conditions{
+  opacity: 50%;
+}
+.datetime,
+.current-weather-desc {
+  opacity: 20%;
+}
+
+.weather {
+  margin-left: 10vw;
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
