@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import General from './General';
 import Temperature from './Temperature';
 import CurrentStats from './CurrentStats';
+import WeatherImageMap from './WeatherImageMap';
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState();
@@ -33,18 +34,28 @@ const Weather = () => {
       clearInterval(timer);
     };
   });
-
+  
   const currentWeatherConditions = weatherData ? weatherData.current.weather[0].main : '';
   const currentWeatherDesc = weatherData? weatherData.current.weather[0].description : '';
+  const background = weatherData 
+    ? {
+      backgroundImage: WeatherImageMap[currentWeatherConditions],
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    } 
+    : {};
   return (
-    <div className="weather">
-      <General city={city} dateTime={dateTime}/>
-      <div className="current-weather">
-        <Temperature weatherData={weatherData} tempUnit={tempUnit} setTempUnit={setTempUnit}/>
-        <div className="current-weather-conditions">{currentWeatherConditions}</div>
-        <div className="current-weather-desc">{currentWeatherDesc}</div>
+    <div className="weather" style={background}>
+      <div>
+        <General city={city} dateTime={dateTime}/>
+        <div className="current-weather">
+          <Temperature weatherData={weatherData} tempUnit={tempUnit} setTempUnit={setTempUnit}/>
+          <div className="current-weather-conditions">{currentWeatherConditions}</div>
+          <div className="current-weather-desc">{currentWeatherDesc}</div>
+        </div>
+        <CurrentStats weatherData={weatherData}/>
       </div>
-      <CurrentStats weatherData={weatherData}/>
     </div>
   );
 };

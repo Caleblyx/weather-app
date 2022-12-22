@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: space-around;
 }
 
 code {
@@ -19,16 +21,16 @@ code {
 }
 .day,
 .location{
-  font-size: 80px;
+  font-size: 6vmin;
 }
 
 .datetime{
-  font-size: 40px;
+  font-size: 3vmin;
 }
 
 .temperature {
   display: flex;
-  font-size: 72px;
+  font-size: 5vmin;
   align-items: center;
 }
 
@@ -46,7 +48,7 @@ code {
 }
 
 .current-weather-stats > img {
-  height: 46px;
+  height: 4vmin;
 }
 
 .current-weather {
@@ -63,12 +65,12 @@ code {
 }
 
 .current-wind-stats{
-  font-size: 32px;
+  font-size: 3vmin;
 }
 
 .current-weather-conditions,
 .current-weather-desc{
-  font-size: 62px;
+  font-size: 5vmin;
 }
 .day,
 .current-weather-conditions{
@@ -80,9 +82,11 @@ code {
 }
 
 .weather {
-  margin-left: 10vw;
-  margin-top: 10vh;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  gap: 1vmin;
+  width: 100vmin;
+  height: 100vmin;
+  align-items: center;
 }
