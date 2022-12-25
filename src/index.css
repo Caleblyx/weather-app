@@ -38,10 +38,12 @@ code {
   margin: 0px 5px;
 }
 
+.forecast-type-selected,
 .temp-unit-selected{
   font-weight: 500;
 }
 
+.forecast-type-unselected,
 .temp-unit-unselected{
   font-weight: 500;
   opacity: 50%;
@@ -74,19 +76,101 @@ code {
 }
 .day,
 .current-weather-conditions{
-  opacity: 50%;
+  opacity: 60%;
 }
 .datetime,
 .current-weather-desc {
-  opacity: 20%;
+  opacity: 30%;
+}
+
+.weather-bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vmin;
+  height: 100vmin;
 }
 
 .weather {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 3vmin;
+}
+
+.forecast-selector{
+  display: flex;
+  font-size: 4vmin;
   gap: 1vmin;
-  width: 100vmin;
-  height: 100vmin;
+}
+
+.forecast-cards {
+  flex-wrap: nowrap;
+  display: flex;
+  overflow: auto;
+  max-width: 100%;
+  gap: 1vmin;
+}
+
+.hourly-forecast-card {
+  width: 20vmin;
+  border-radius: 1vmin;
+  height: 20vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  color: white;
+  background-color: rgba(20, 0, 5, 0.4);
+  gap: 1vmin;
+}
+
+.forecast-datetime {
+  font-weight: 800;
+}
+
+.forecast-card-img {
+  height: 8vmin;
+}
+
+.hourly-forecast-popover{
+  box-sizing: border-box;
+  width: 45vmin;
+  height: 20vmin;
+  background-color: rgba(217,217,217,0.5);
+  box-shadow: none;
+  color: black;
+  padding: 2vmin;
+}
+
+.hourly-forecast-popover-stats{
+  display: flex;
+  gap: 2vmin;
+  align-items: center;
+  padding-top: 2vmin;
+}
+
+.hourly-forecast-popover-stats-column{
+  display: flex;
+  flex-direction: column;
+  gap: 0vmin;
+}
+
+.hourly-forecast-description{
+  text-align: center;
+  margin-top: 1vmin;
+  font-weight: 500;
+}
+
+ul{
+  margin: 0;
+  list-style-type: none;
+}
+
+.forecast-card-temperatures{
+  display: flex;
+  gap: 1vmin;
+}
+
+.forecast-card-temperature-min{
+  opacity: 50%;
 }

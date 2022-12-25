@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import cloudy from '../images/Cloudy.png';
+import cloudy from '../images/Clouds.png';
 import humidity from '../images/Humidity.png';
 import fog from '../images/Fog.png';
 import wind from '../images/Wind.png';

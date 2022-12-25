@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import General from './General';
 import Temperature from './Temperature';
 import CurrentStats from './CurrentStats';
-import WeatherImageMap from './WeatherImageMap';
+import {WeatherImageMapBG} from './WeatherImageMap';
+import Forecast from './Forecast';
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState();
   const [city, setCity] = useState('Singapore');
   const [tempUnit, setTempUnit] = useState("metric");
-  const [dateTime, setDateTime] = useState(new Date());
+  const [forecastType, setForecastType] = useState('hourly');
   useEffect(() => {
     const apiKey = '20f7632ffc2c022654e4093c6947b4f4';
     const fetchData = async () => {
@@ -27,34 +28,28 @@ const Weather = () => {
     };
     fetchData();
   }, [tempUnit]);
-
-  useEffect(() => {
-    const timer = setInterval(()=>setDateTime(new Date()), 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  });
   
   const currentWeatherConditions = weatherData ? weatherData.current.weather[0].main : '';
   const currentWeatherDesc = weatherData? weatherData.current.weather[0].description : '';
   const background = weatherData 
     ? {
-      backgroundImage: WeatherImageMap[currentWeatherConditions],
+      backgroundImage: WeatherImageMapBG[currentWeatherConditions],
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     } 
     : {};
   return (
-    <div className="weather" style={background}>
-      <div>
-        <General city={city} dateTime={dateTime}/>
+    <div className="weather-bg" style={background}>
+      <div className="weather">
+        <General city={city}/>
         <div className="current-weather">
           <Temperature weatherData={weatherData} tempUnit={tempUnit} setTempUnit={setTempUnit}/>
           <div className="current-weather-conditions">{currentWeatherConditions}</div>
           <div className="current-weather-desc">{currentWeatherDesc}</div>
         </div>
         <CurrentStats weatherData={weatherData}/>
+        <Forecast weatherData={weatherData} tempUnit={tempUnit} forecastType={forecastType} setForecastType={setForecastType}/>
       </div>
     </div>
   );

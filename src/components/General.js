@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const General = ({city, dateTime}) => {
+const General = ({city}) => {
+  const [dateTime, setDateTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(()=>setDateTime(new Date()), 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  });
+
   const currentDay = dateTime.toLocaleString('en-GB', {weekday: "long"});
   const currentDate = dateTime.toLocaleString('en-GB', {day: "numeric", month: "long", year: "numeric"});
   const currentTime = dateTime.toLocaleString('en-GB', {hour: "numeric", minute: "numeric", hour12: true});
@@ -19,7 +28,6 @@ const General = ({city, dateTime}) => {
 
 General.propTypes = {
   city: PropTypes.string.isRequired,
-  dateTime: PropTypes.object.isRequired
 };
 
 export default General;
