@@ -1,7 +1,7 @@
 # weather-app
 This is a simple app that displays weather information using the [OpenWeather API](https://openweathermap.org/api/one-call-api). It is implemented with ReactJs.
 
-Try the app [here](https://caleblyx.github.io/weather-app/)
+Try the app [here](https://caleblyx.github.io/weather-app/).
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
