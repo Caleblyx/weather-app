@@ -4,7 +4,6 @@ import { WeatherImageMap } from "./WeatherImageMap";
 import Popover from '@mui/material/Popover';
 
 const DailyForecastCard = ({dailyData, tempUnit}) => {
-  console.log();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handlePopoverOpen = (event) => {
@@ -25,11 +24,9 @@ const DailyForecastCard = ({dailyData, tempUnit}) => {
   const weatherDesc = dailyData.weather[0].description;
   const cloudiness = dailyData.clouds;
   const humidity = dailyData.humidity;
-  const visibility = dailyData.visibility/1000;
   const windDeg = dailyData.wind_deg;
   const windSpeed = dailyData.wind_speed;
 
-  console.log(open);
 
   return (
     <div>
@@ -69,7 +66,6 @@ const DailyForecastCard = ({dailyData, tempUnit}) => {
             <div className='hourly-forecast-popover-stats-column'>
               <div>Cloudiness: {cloudiness}%</div>
               <div>Humidity: {humidity}%</div>
-              <div>Visibility: {visibility}km </div>
             </div>
             <div>
               Wind:

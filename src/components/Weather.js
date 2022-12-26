@@ -4,12 +4,20 @@ import Temperature from './Temperature';
 import CurrentStats from './CurrentStats';
 import {WeatherImageMapBG} from './WeatherImageMap';
 import Forecast from './Forecast';
+import SearchBar from './SearchBar';
+
+import cities from 'cities.json';
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState();
+  const [currentWeatherConditions, setCurrentWeatherConditions] = useState('');
+  const [currentWeatherDesc, setCurrentWeatherDesc] = useState('');
+  const [background, setBackground] = useState({});
   const [city, setCity] = useState('Singapore');
   const [tempUnit, setTempUnit] = useState("metric");
   const [forecastType, setForecastType] = useState('hourly');
+  const [cityInput, setCityInput] = useState('');
+
   useEffect(() => {
     const apiKey = '20f7632ffc2c022654e4093c6947b4f4';
     const fetchData = async () => {
@@ -22,26 +30,52 @@ const Weather = () => {
         const weatherJson = await weatherPromise.json();
         console.log(weatherJson);
         setWeatherData(weatherJson);
+        setCurrentWeatherConditions(weatherJson.current.weather[0].main);
+        setCurrentWeatherDesc(weatherJson.current.weather[0].description);
+        const backgroundRef = WeatherImageMapBG[weatherJson.current.weather[0].main];
+        setBackground({
+          backgroundImage: backgroundRef,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        });
       } catch (e) {
         console.log(e);
       }
     };
     fetchData();
-  }, [tempUnit]);
-  
-  const currentWeatherConditions = weatherData ? weatherData.current.weather[0].main : '';
-  const currentWeatherDesc = weatherData? weatherData.current.weather[0].description : '';
-  const background = weatherData 
-    ? {
-      backgroundImage: WeatherImageMapBG[currentWeatherConditions],
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    } 
-    : {};
+  }, [tempUnit, city]);
+
+  const capitalizeAndStrip = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).trim();
+  };
+  const isValidCity = (inputCity) => {
+    const capitalize = capitalizeAndStrip(inputCity);
+    return cities.some(city=>city.name===capitalize);
+  }; 
+
+  const onSubmitCitySearch = (e) => {
+    e.preventDefault();
+    const inputEl = e.target.querySelector('input[name="city"]');
+    inputEl.setCustomValidity('');
+    if (isValidCity(cityInput)) {
+      setCity(capitalizeAndStrip(cityInput));
+      setCityInput('');
+    } else {
+      inputEl.setCustomValidity('This is not a valid city.');
+      setTimeout(()=>{inputEl.setCustomValidity('');}, 3000);
+    };
+  };
+
+
   return (
     <div className="weather-bg" style={background}>
       <div className="weather">
+        <SearchBar 
+          cityInput={cityInput} 
+          setCityInput={setCityInput} 
+          onSubmitCitySearch={onSubmitCitySearch}
+        />
         <General city={city}/>
         <div className="current-weather">
           <Temperature weatherData={weatherData} tempUnit={tempUnit} setTempUnit={setTempUnit}/>

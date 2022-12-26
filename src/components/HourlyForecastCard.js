@@ -28,7 +28,6 @@ const HourlyForecastCard = ({hourData, tempUnit}) => {
   const windDeg = hourData.wind_deg;
   const windSpeed = hourData.wind_speed;
 
-  console.log(open);
 
   return (
     <div>
